@@ -12,4 +12,7 @@ jobs:
         with:
           node-version: 15.0
 
+      - name: Run docker-compose
+        run: docker-compose up -d --build  
+
       - run: yarn test
