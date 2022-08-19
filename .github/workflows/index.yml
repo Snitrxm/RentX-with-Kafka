@@ -4,6 +4,8 @@ on: [ push ]
 jobs:
   test-and-run-app:
     runs-on: ubuntu-latest
+    environment: prod
+    
 
     steps:
       - uses: actions/checkout@v3
