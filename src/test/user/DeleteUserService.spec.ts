@@ -2,12 +2,14 @@ import "reflect-metadata";
 import { UsersRepository } from "../../modules/user/repositories/implementations/UsersRepository";
 import { IUsersRepository } from "../../modules/user/repositories/IUsersRepository";
 import { CreateUserService } from "../../modules/user/services/CreateUserService";
+import { DeleteUserService } from "../../modules/user/services/DeleteUserService";
 import { prisma } from "../../prisma"
 
-let createUserService: CreateUserService;
+let deleteUserService: DeleteUserService;
 let usersRepository: IUsersRepository;
+let createUserService: CreateUserService;
 
-describe("CreateUserService", () => {
+describe("DeleteUserService", () => {
   beforeAll(async () => {
     await prisma.$connect();
     await prisma.$queryRaw`DELETE * FROM users`;
@@ -21,6 +23,7 @@ describe("CreateUserService", () => {
   beforeEach(async () => {
     usersRepository = new UsersRepository();
     createUserService = new CreateUserService(usersRepository);
+    deleteUserService = new DeleteUserService(usersRepository);
   })
 
   it("Should create a user", async () => {
@@ -30,7 +33,9 @@ describe("CreateUserService", () => {
       email: "test@test.com"
     })
 
-    expect(user).toHaveProperty("id");
+    const deletedUser = await deleteUserService.execute(user.id)
+
+    expect(deletedUser).toBeUndefined();
   })
 
 })

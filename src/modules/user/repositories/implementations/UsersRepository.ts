@@ -4,6 +4,15 @@ import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../IUsersRepository";
 
 export class UsersRepository implements IUsersRepository{
+  delete(id: string): Promise<void> {
+    const user = prisma.user.delete({
+      where: {
+        id,
+      }
+    })
+
+    return user as User | any;
+  }
   findByEmail(email: string): Promise<User> {
     const user = prisma.user.findFirst({
       where: {
