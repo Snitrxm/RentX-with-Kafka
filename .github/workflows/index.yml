@@ -1,19 +1,19 @@
-name: ci-node-with-docker
-on: [ push ]
+# name: ci-node-with-docker
+# on: [ push ]
 
-jobs:
-  test-and-run-app:
-    runs-on: ubuntu-latest
-    environment: prod
+# jobs:
+#   test-and-run-app:
+#     runs-on: ubuntu-latest
+#     environment: prod
     
-    steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js 15.0
-        uses: actions/setup-node@v3
-        with:
-          node-version: 15.0
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Use Node.js 15.0
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: 15.0
 
-      - name: Run docker-compose
-        run: docker-compose up -d --build  
+#       - name: Run docker-compose
+#         run: docker-compose up -d --build  
 
-      - run: yarn test
+#       - run: yarn test

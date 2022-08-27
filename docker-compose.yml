@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_PASSWORD: admin
       POSTGRES_USER: postgres
-      POSTGRES_DB: nodedocker
+      POSTGRES_DB: test
     networks:
       - nodedocker  
     ports:

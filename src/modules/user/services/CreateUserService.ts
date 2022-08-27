@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { hash } from "bcrypt";
 import { inject, injectable } from "tsyringe";
 import { ICreateUserDTO } from "../dtos/ICreateUserDTO";
 import { IUsersRepository } from "../repositories/IUsersRepository";
@@ -19,7 +20,9 @@ export class CreateUserService {
       throw new Error("User already exists");
     }
 
-    const user = await this.usersRepository.create({ email,name,password });
+    const hashPasword = await hash(password, 8);
+
+    const user = await this.usersRepository.create({ email,name, password: hashPasword});
     return user;
   }
 }
