@@ -1,4 +1,4 @@
-# Pinterest Backend
+# NodeJS With Docker
 
 Project created with the aim of putting into practice what I've learned in Full Cycle until now
 
